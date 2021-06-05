@@ -1,0 +1,18 @@
+<div *ngIf="message" class="modal" tabindex="-1" role="dialog" style="display:block!important">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-body">
+					<div fxFlex="12">
+						<em class="fa fa-exclamation-circle" style="font-size:36px" *ngIf="message.status=='W'" ></em><em class="fa fa-check-circle"*ngIf="message.status=='S'" ></em></div><div fxFlex="88" style="margin-top:2%" [innerHTML]="message.text"></div>
+						<!-- <p>{{message.text}}</p> -->
+			</div>
+			
+					<div class="wrapper">
+							
+				<button type="button" (click)=message.siFn() class="btn btn-primary btnok" data-dismiss="modal">  OK  </button>
+		</div>
+			
+		</div>
+	</div>
+</div>

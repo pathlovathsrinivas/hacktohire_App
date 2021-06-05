@@ -1,0 +1,55 @@
+
+<div style="text-align: center;color: green;">
+    <h3>Books DashBoard</h3>
+</div>
+
+<div style="display:flex; flex-direction: row;">
+    <!-- search field  -->
+        <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    
+    </div>
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="bookDataSource" matSort>
+    
+            <!-- ID Column -->
+            <ng-container matColumnDef="UUID">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> userId </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.UUID}} </mat-cell>
+            </ng-container>
+    
+            <!-- Progress Column -->
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="author">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Author </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.author}} </mat-cell>
+            </ng-container>
+    
+            <!-- category Column -->
+            <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.category}} </mat-cell>
+            </ng-container>
+            <!-- returned_date -->
+            <ng-container matColumnDef="returned_date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> returned Date </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.returned_date}} </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+           
+        </mat-table>
+        <!-- pagination  -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    
+    </div>
